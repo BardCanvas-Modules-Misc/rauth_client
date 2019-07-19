@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    
+    <version>1.0.0</version>
+    <group>modules_premium</group>
+    <admin_only>false</admin_only>
+    
+    <working_flags>
+        <install>true</install>
+        <uninstall>true</uninstall>
+        <enable>true</enable>
+        <disable>true</disable>
+    </working_flags>
+    
+    <extends_to>
+        <accounts>
+            <!-- TODO: add hook for index.php / admin account creation -->
+            <!-- TODO: add hook for index.php / admin account saving   -->
+            <registration>
+                <before_insertion>extenders/account_insertion.inc</before_insertion>
+            </registration>
+            <login>
+                <pre_validations>extenders/login_check.inc</pre_validations>
+            </login>
+            <profile_editor>
+                <before_saving>extenders/account_update.inc</before_saving>
+            </profile_editor>
+            <account_admin_editor>
+                <before_saving>extenders/account_update.inc</before_saving>
+            </account_admin_editor>
+            <reset_password>
+                <after_saving>extenders/account_update.inc</after_saving>
+            </reset_password>
+            <login_form>
+                <top>extenders/login_form_ad.inc</top>
+            </login_form>
+            <toolbox>
+                <before_level_change>extenders/account_level_change.inc</before_level_change>
+            </toolbox>
+        </accounts>
+    </extends_to>
+    
+</module>

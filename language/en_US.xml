@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language>
+    
+    <display_name>Remote Authentication Client</display_name>
+    <icon>fa-sign-in</icon>
+    <description><![CDATA[
+        API endpoints and hooks to interface with a BardCanvas-based Remote Authentication Server.
+    ]]></description>
+    
+    <login_using_rauth><![CDATA[
+        Use your <a href="{$server_url}" target="_blank">{$server_name}</a> credentials to login.
+    ]]></login_using_rauth>
+    
+    <messages>
+        <website_handle_empty>This website handle on the remote authentication server is empty.</website_handle_empty>
+        <website_name_empty>The remote authentication website name is empty.</website_name_empty>
+        <website_url_empty>The remote authentication website URL is empty.</website_url_empty>
+        <website_keys_incomplete>The remote authentication website encryption keys are incomplete.</website_keys_incomplete>
+        <remote_api_error>Can't call to the remote API at %s: %s</remote_api_error>
+        <remote_api_empty>Nothing has been received from the remote API. Called URL: %s</remote_api_empty>
+        <invalid_api_response>Error: API response is not a valid JSON response: %s. Called URL: %s</invalid_api_response>
+        <invalid_api_object>Error: API response is not a valid JSON object. Called URL: %s</invalid_api_object>
+        <remote_auth_error>Authentication server error: %s</remote_auth_error>
+        <registration_error><![CDATA[
+            Cannot register the account on %s:<br>
+            %s<br>
+            Please try again. If the problem persists, please contact the tech support staff.
+        ]]></registration_error>
+        <null_remote_object><![CDATA[
+            Cannot continue with account registration: %s has returned an empty object that cannot be handled locally.<br>
+            Please try again. If the problem persists, please contact the tech support staff.
+        ]]></null_remote_object>
+        <missing_token>You haven't specified the login token.</missing_token>
+        <invalid_token>Sorry, but the token you've provided is invalid.</invalid_token>
+        <token_expired><![CDATA[
+            Sorry, but the token has expired. <a href="{$link}">Click here</a> to login now.
+        ]]></token_expired>
+        <account_unconfirmed><![CDATA[
+            Sorry, but your account on this website is not confirmed.
+            It seems there has been an issue with the Authentication Server.<br><br>
+            Please <a href="{$link}">click here</a> and try to login manually.
+            If the problem persists, please contact us and request for help.
+        ]]></account_unconfirmed>
+        <missing_account_id>Missing account id.</missing_account_id>
+        <invalid_account_id>Invalid account id.</invalid_account_id>
+        <missing_account>Account not found.</missing_account>
+        <invalid_object_returned>The authentication server returned an invalid object.</invalid_object_returned>
+        <no_level_change_allowed>You can't change this user's level on this website. Please do it from the {$server} accounts browser.</no_level_change_allowed>
+        <missing_level>Missing level.</missing_level>
+        <invalid_level>Invalid level.</invalid_level>
+        <account_pushed_ok>Account changes pushed successfully to {$server}.</account_pushed_ok>
+    </messages>
+    
+    <settings_data>
+        <title>Remote Auth Client</title>
+        
+        <specs key="auth_website_name">
+            <title><![CDATA[
+                Authentication Server Website name
+            ]]></title>
+            <description><![CDATA[
+                Used for reference in error messages.
+            ]]></description>
+            <type>text</type>
+        </specs>
+        
+        <specs key="auth_website_handle">
+            <title><![CDATA[
+                This website handle for the Authentication Server
+            ]]></title>
+            <description><![CDATA[
+                It should be provided by the rAuth server owner.
+            ]]></description>
+            <type>text</type>
+        </specs>
+        
+        <specs key="auth_server_url">
+            <title><![CDATA[
+                Authentication Server URL
+            ]]></title>
+            <description><![CDATA[
+                Specify the auth server URL
+            ]]></description>
+            <type>text</type>
+        </specs>
+        
+        <specs key="auth_server_keys">
+            <title><![CDATA[
+                Authentication Server encryption keys
+            ]]></title>
+            <description><![CDATA[
+                Specify the three encryption keys to use when communicating with the server, one per each line.
+            ]]></description>
+            <type>code</type>
+        </specs>
+        
+        <specs key="local_accounts">
+            <title><![CDATA[
+                Local accounts
+            ]]></title>
+            <description><![CDATA[
+                The user names you specify on this list will be kept locally.<br>
+                Type one user name per line.
+            ]]></description>
+            <type>code</type>
+        </specs>
+        
+    </settings_data>
+    
+</language>
