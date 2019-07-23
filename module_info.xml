@@ -14,8 +14,6 @@
     
     <extends_to>
         <accounts>
-            <!-- TODO: add hook for index.php / admin account creation -->
-            <!-- TODO: add hook for index.php / admin account saving   -->
             <registration>
                 <before_insertion>extenders/account_insertion.inc</before_insertion>
             </registration>
