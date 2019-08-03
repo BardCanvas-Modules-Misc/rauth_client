@@ -23,7 +23,7 @@ catch(\Exception $e)
     return;
 }
 
-if( in_array($account->user_name, $server->local_accounts) ) return;
+if( in_array($xaccount->user_name, $server->local_accounts) ) return;
 
 try
 {
