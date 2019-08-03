@@ -20,11 +20,16 @@
             <login>
                 <pre_validations>extenders/login_check.inc</pre_validations>
             </login>
+            <prefs_editor>
+                <after_saving>extenders/push_current_prefs.inc</after_saving>
+            </prefs_editor>
             <profile_editor>
                 <before_saving>extenders/account_update.inc</before_saving>
+                <after_saving>extenders/push_prefs.inc</after_saving>
             </profile_editor>
             <account_admin_editor>
                 <before_saving>extenders/account_update.inc</before_saving>
+                <after_saving>extenders/push_prefs.inc</after_saving>
             </account_admin_editor>
             <reset_password>
                 <after_saving>extenders/account_update.inc</after_saving>

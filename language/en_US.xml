@@ -49,6 +49,14 @@
         <missing_level>Missing level.</missing_level>
         <invalid_level>Invalid level.</invalid_level>
         <account_pushed_ok>Account changes pushed successfully to {$server}.</account_pushed_ok>
+        <missing_prefs>Missing preferences data</missing_prefs>
+        <invalid_prefs>Invalid preferences data</invalid_prefs>
+        <received_prefs><![CDATA[
+            <b>Important:</b> account preferences have been received from {$server}.
+            If you're editing your profile or setting your account preferences, please
+            stop now and reload the page before submitting any changes.
+        ]]></received_prefs>
+        <prefs_pushed_ok>Account preferences pushed successfully to {$server}.</prefs_pushed_ok>
     </messages>
     
     <settings_data>

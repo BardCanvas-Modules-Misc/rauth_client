@@ -159,6 +159,18 @@ class server
         $this->request("update_account", $xaccount);
     }
     
+    public function push_engine_prefs($id_account, $prefs)
+    {
+        if( ! $this->initialized ) return;
+        
+        $params = (object) array(
+            "id_account" => $id_account,
+            "prefs"      => $prefs,
+        );
+        
+        $this->request("update_engine_prefs", $params);
+    }
+    
     /**
      * @param string $method
      * @param mixed  $params
