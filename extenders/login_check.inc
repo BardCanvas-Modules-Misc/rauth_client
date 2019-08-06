@@ -85,4 +85,9 @@ catch(\Exception $e)
 $xaccount->_exists = false;
 $xaccount->save();
 
+$prefs = $xaccount->engine_prefs;
+if( is_array($prefs) )
+    foreach($prefs as $key => $val)
+        $xaccount->set_engine_pref($key, $val);
+
 $account = new account($xaccount->id_account);
