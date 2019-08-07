@@ -1,6 +1,10 @@
 
 # Remote Authentication Client Change Log
 
+## [1.3.0] - 2019-08-06
+
+- Added preferences on account transfer.
+
 ## [1.2.0] - 2019-08-03
 
 - Fixed wrong module group.
