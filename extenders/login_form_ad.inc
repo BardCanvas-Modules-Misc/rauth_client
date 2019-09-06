@@ -20,7 +20,7 @@ catch(\Exception $e)
 }
 ?>
 
-<span class="framed_content state_ok"
+<span class="framed_content rauth_login_ad state_ok"
    style="display: block; margin-top: 0; margin-bottom: 10px; text-align: center; line-height: normal;">
     <?= replace_escaped_objects(
         $this_module->language->login_using_rauth, array(
