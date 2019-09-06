@@ -59,6 +59,11 @@
         <prefs_pushed_ok>Account preferences pushed successfully to {$server}.</prefs_pushed_ok>
     </messages>
     
+    <always_remote>
+        <login_caption>Login with {$server_name}</login_caption>
+        <local_login>Local account login</local_login>
+    </always_remote>
+    
     <settings_data>
         <title>Remote Auth Client</title>
         
@@ -98,6 +103,32 @@
             ]]></title>
             <description><![CDATA[
                 Specify the three encryption keys to use when communicating with the server, one per each line.
+            ]]></description>
+            <type>code</type>
+        </specs>
+        
+        <specs key="login_type">
+            <title>Login/register override type</title>
+            <description><![CDATA[
+                Select the method used to show the login form and registration link:<br><br>
+                <b>No override</b>: the login and registration forms are untouched, served locally.
+                The authentication with the remote server runs in the background.<br><br>
+                <b>Always remote</b>: The user will be directed to login/registration forms
+                on the authentication server, then redirected back to this website.
+            ]]></description>
+            <type>list</type>
+            <options>
+                <option value="">No override</option>
+                <option value="remote">Always remote</option>
+            </options>
+        </specs>
+        
+        <specs key="login_link_caption">
+            <title>Login link caption</title>
+            <description><![CDATA[
+                If you want to override the "Login with &lt;server&gt;" message
+                on the login form, type it here.<br>
+                Use HTML as needed.
             ]]></description>
             <type>code</type>
         </specs>

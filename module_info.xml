@@ -12,6 +12,10 @@
         <disable>true</disable>
     </working_flags>
     
+    <template_includes>
+        <html_head>head_scripts.inc</html_head>
+    </template_includes>
+    
     <extends_to>
         <accounts>
             <registration>

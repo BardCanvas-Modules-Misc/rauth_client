@@ -7,6 +7,9 @@
  * @author     Alejandro Caballero - lava.caballero@gmail.com
  * 
  * @var string "token"
+ * @var string "redirect_to" optional
+ * @var string "uhash"       encrypted user name, optional, if provided, we're dealing with an account transfer
+ * @var string "phash"       encrypted password hash, optional, if provided, we're dealing with an account transfer
  */
 
 use hng2_base\account;
@@ -39,10 +42,49 @@ list($id_account, $expiration_timestamp) = explode(",", $token);
 
 if( time() > $expiration_timestamp ) die(replace_escaped_objects(
     $current_module->language->messages->token_expired,
-    array('{$url}' => "{$config->full_root_url}?show_login_form=true")
+    array('{$link}' => "{$config->full_root_url}?show_login_form=true")
 ));
 
 $account = new account($id_account);
+
+#
+# Transfer check
+#
+
+if( ! $account->_exists )
+{
+    if( ! empty($_GET["uhash"]) && ! empty($_GET["phash"]) )
+    {
+        $user_name = three_layer_decrypt(
+            stripslashes($_GET["uhash"]),
+            $server->auth_server_encryption_key1,
+            $server->auth_server_encryption_key2,
+            $server->auth_server_encryption_key3
+        );
+        $password_hash = three_layer_decrypt(
+            stripslashes($_GET["phash"]),
+            $server->auth_server_encryption_key1,
+            $server->auth_server_encryption_key2,
+            $server->auth_server_encryption_key3
+        );
+        
+        try
+        {
+            $xaccount = $server->get_account($user_name, $password_hash);
+        }
+        catch(\Exception $e)
+        {
+            die("[ERROR] {$e->getMessage()}");
+        }
+        
+        $xaccount->_exists = false;
+        $xaccount->save();
+        
+        $prefs = $xaccount->engine_prefs;
+        $account = new account($xaccount->id_account);
+        foreach($prefs as $key => $val) $account->set_engine_pref($key, $val);
+    }
+}
 
 #
 # Adapted snipped from accounts/scripts/login.php
@@ -78,5 +120,7 @@ $device->save();
 
 $account->open_session($device);
 
-header("Location: {$config->full_root_url}");
-die("<a href='{$config->full_root_url}'>{$language->click_here_to_continue}</a>");
+$url = empty($_GET["redirect_to"]) ? $config->full_root_url : stripslashes($_GET["redirect_to"]);
+
+header("Location: $url");
+die("<a href='$url'>{$language->click_here_to_continue}</a>");
