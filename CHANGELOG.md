@@ -1,6 +1,10 @@
 
 # Remote Authentication Client Change Log
 
+## [1.4.0] - 2019-09-06
+
+- Added support for SSO-like logins (always remote) from clients.
+
 ## [1.3.0] - 2019-08-06
 
 - Added preferences on account transfer.
