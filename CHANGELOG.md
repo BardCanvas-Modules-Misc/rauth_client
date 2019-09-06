@@ -1,6 +1,10 @@
 
 # Remote Authentication Client Change Log
 
+## [1.4.1] - 2019-09-06
+
+- Added redirection to server on account registration for "always remote" clients.
+
 ## [1.4.0] - 2019-09-06
 
 - Added support for SSO-like logins (always remote) from clients.
