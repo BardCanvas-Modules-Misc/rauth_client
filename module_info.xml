@@ -14,6 +14,7 @@
     
     <template_includes>
         <html_head>head_scripts.inc</html_head>
+        <pre_rendering>registration_redir.inc</pre_rendering>
     </template_includes>
     
     <extends_to>
@@ -44,6 +45,9 @@
             <toolbox>
                 <before_level_change>extenders/account_level_change.inc</before_level_change>
             </toolbox>
+            <register_form>
+                <top>extenders/registration_extras.inc</top>
+            </register_form>
         </accounts>
     </extends_to>
     
