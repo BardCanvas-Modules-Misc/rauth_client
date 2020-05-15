@@ -88,6 +88,70 @@ class server
     }
     
     /**
+     * @param account $account
+     * 
+     * @return bool
+     */
+    public function is_local_account_mapped_remotely($account)
+    {
+        if( ! $this->initialized ) return false;
+        
+        return isset($account->engine_prefs["@rauth_client.mapped_account_id"]);
+    }
+    
+    /**
+     * @param account $account
+     * @param int     $ttl_minutes
+     *
+     * @return string
+     */
+    public function tokenize_mapped_account_id($account, $ttl_minutes = 0)
+    {
+        if( ! $this->initialized ) return null;
+        
+        if( empty($ttl_minutes) ) return three_layer_encrypt(
+            $account->engine_prefs["@rauth_client.mapped_account_id"],
+            $this->auth_server_encryption_key1,
+            $this->auth_server_encryption_key2,
+            $this->auth_server_encryption_key3
+        );
+        
+        return three_layer_encrypt(
+            $account->engine_prefs["@rauth_client.mapped_account_id"] . "," . (time() + ($ttl_minutes * 60)),
+            $this->auth_server_encryption_key1,
+            $this->auth_server_encryption_key2,
+            $this->auth_server_encryption_key3
+        );
+    }
+    
+    /**
+     * @param account $xaccount
+     *
+     * @return account|null
+     * @throws \Exception
+     */
+    public function map_local_account($xaccount)
+    {
+        if( ! $this->initialized ) return null;
+        
+        $res = $this->request("map_client_account", $xaccount);
+        if( empty($res) ) return null;
+        
+        $object = unserialize(three_layer_decrypt(
+            $res,
+            $this->auth_server_encryption_key1,
+            $this->auth_server_encryption_key2,
+            $this->auth_server_encryption_key3
+        ));
+        
+        if( ! is_object($object) ) return null;
+        
+        $xaccount->set_engine_pref("@rauth_client.mapped_account_id", $object->id_account);
+        
+        return $object;
+    }
+    
+    /**
      * @param $id_account
      *
      * @throws \Exception
