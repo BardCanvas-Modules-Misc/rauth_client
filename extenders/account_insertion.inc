@@ -29,7 +29,7 @@ catch(\Exception $e)
 if( in_array($account->user_name, $server->local_accounts) ) return;
 
 $creation_ip             = get_remote_address();
-$creation_host           = gethostbyaddr($creation_ip);
+$creation_host           = @gethostbyaddr($creation_ip);
 $xaccount->creation_host = "$creation_ip; $creation_host";
 
 # $errors[] = print_r($xaccount, true); return;
