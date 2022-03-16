@@ -1,6 +1,10 @@
 
 # Remote Authentication Client Change Log
 
+## [1.4.3] - 2022-03-16
+
+- Added prefix to dodge warning on the account insertion extender.
+
 ## [1.4.2] - 2020-05-15
 
 - Added local account mapping methods.
